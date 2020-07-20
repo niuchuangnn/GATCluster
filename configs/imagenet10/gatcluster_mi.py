@@ -1,45 +1,47 @@
-model_name = "gcluster_mi"
+model_name = "gatcluster_mi"
+num_train = 5
 num_workers = 4
 device = 0
 
-num_train = 5
-
 num_cluster = 10
 batch_size = 1000
-target_sub_batch_size = 200
+target_sub_batch_size = 100
 train_batch_size = batch_size
 train_sub_batch_size = 32
 num_trans_aug = 1
 num_repeat = 8
 fea_dim = 32
+resize = 128
 att_conv_dim = num_cluster
 att_size = 6
 
 max_iters = 6000
 
 data_train = dict(
-    type="stl10_gray",
-    root_folder="./datasets/stl10",
-    split="train+test",
-    download=True,
+    type="imagenet",
+    root_folder="./datasets/imagenet10",
     ims_per_batch=batch_size,
+    download=True,
     shuffle=True,
     aspect_ratio_grouping=False,
     train=True,
     show=False,
     num_trans_aug=num_trans_aug,
+    resize=resize,
+    gray=True,
 )
 
 data_test = dict(
-    type="stl10_gray",
-    root_folder="./datasets/stl10",
-    split="train+test",
+    type="imagenet",
+    root_folder="./datasets/imagenet10",
     download=True,
-    shuffle=False,
-    ims_per_batch=50,
+    ims_per_batch=20,
+    shuffle=True,
     aspect_ratio_grouping=False,
     train=False,
     show=False,
+    resize=resize,
+    gray=True,
 )
 
 model = dict(
@@ -48,10 +50,10 @@ model = dict(
         type="convnet",
         input_channel=1,
         conv_layers=[[64, 64, 64], 'max_pooling', [128, 128, 128], 'max_pooling', [256, 256, 256], 'max_pooling',
-                    [fea_dim]],
-        kernels=[[3, 3, 3], 2, [3, 3, 3], 2, [3, 3, 3], 2, [1]],
-        strides=[[1, 1, 1], 2, [1, 1, 1], 2, [1, 1, 1], 2, [1]],
-        pads=   [[0, 0, 0], 0, [0, 0, 0], 0, [0, 0, 0], 0, [0]],
+                    [256, 256, fea_dim]],
+        kernels=[[3, 3, 3], 2, [3, 3, 3], 2, [3, 3, 3], 2, [3, 3, 1]],
+        strides=[[1, 1, 1], 2, [1, 1, 1], 2, [1, 1, 1], 2, [1, 1, 1]],
+        pads=   [[0, 0, 0], 0, [0, 0, 0], 0, [0, 0, 0], 0, [0, 0, 0]],
         num_block=4,
         fc_input_neurons=None,
         fc_layers=[],
@@ -96,7 +98,7 @@ model = dict(
         att_conv=dict(
             type="convnet",
             input_channel=fea_dim,
-            conv_layers=[[num_cluster]],
+            conv_layers=[[att_conv_dim]],
             kernels=[[1]],
             strides=[[1]],
             pads=[[0]],
@@ -119,13 +121,13 @@ model = dict(
 
         mi_att=dict(
             type="mlp",
-            num_neurons=[2*fea_dim, fea_dim, fea_dim, 1],
+            num_neurons=[2 * fea_dim, fea_dim, fea_dim, 1],
             last_activation=None
         ),
 
         mi_att_oa=dict(
             type="mlp",
-            num_neurons=[fea_dim+num_cluster, fea_dim, num_cluster, 1],
+            num_neurons=[fea_dim + num_cluster, fea_dim, num_cluster, 1],
             last_activation=None
         ),
 
@@ -153,6 +155,7 @@ model = dict(
 
 solver = dict(
     type="adam",
+    train_fn="train_sera",
     max_iter=max_iters,
     base_lr=0.001,
     bias_lr_factor=1,
@@ -168,9 +171,8 @@ solver = dict(
     rel_loss=True,
     att_loss=True,
     mi_loss=True,
-
 )
 
 results = dict(
-    output_dir="./results/stl10/{}".format(model_name),
+    output_dir="./results/imagenet10/{}".format(model_name),
 )

@@ -130,9 +130,6 @@ class GaussianAttentionClusterHead(nn.Module):
         min_num = num * self.min_ratio / self.num_cluster
         num_cluster_pred = int(np.unique(predicted).shape[0])
 
-        print(num_per_cluster)
-        print(np.unique(predicted))
-
         if num_cluster_pred < self.num_cluster or num_per_cluster.min() < min_num:
             dia_idx_x = list(range(num))
             dia_idx_y = list(range(num))
@@ -226,8 +223,6 @@ class GaussianAttentionClusterHead(nn.Module):
         feature_ori = self.ave_pooling(fea_conv)
         feature_ori = feature_ori.flatten(start_dim=1)
 
-        # feature_ori = torch.exp(feature_ori - feature_ori.max(dim=1)[0].unsqueeze(1))
-
         cluster_prob_ori = self.classifier_ori(feature_ori)
 
         if return_target:
@@ -257,7 +252,6 @@ class GaussianAttentionClusterHead(nn.Module):
 
             feature_att = fea_conv * att_map  # spatial attention
             feature_att = feature_att.sum(dim=-1).sum(dim=-1)  # sum along the spatial dimension.
-            # feature_att = torch.exp(feature_att - feature_att.max(dim=1)[0].unsqueeze(1))
             if self.classifier_att:
                 cluster_prob_att = self.classifier_att(feature_att)
             else:
@@ -285,11 +279,7 @@ class GaussianAttentionClusterHead(nn.Module):
 
         if target_fea_ori is not None:
             # Similarity loss.
-            # loss_sim_fea = -(self.l2_norm(fea_ori) * self.l2_norm(target_fea_ori)).sum(dim=1).mean()
-            # loss_sim_fea = self.loss_mse(fea_ori, target_fea_ori)
             loss_sim_prob = -(prob_ori * target_prob_ori).sum(dim=1).mean()
-            # loss_sim = self.loss_mse(fea_ori, target_fea_ori)
-            # loss["loss_similarity"] = (loss_sim_fea + loss_sim_prob) * self.loss_weight["loss_sim"]
             loss["loss_similarity"] = loss_sim_prob * self.loss_weight["loss_sim"]
 
         if entropy_loss:
@@ -318,10 +308,7 @@ class GaussianAttentionClusterHead(nn.Module):
 
         if target_fea_att is not None:
             assert target_fea_att is not None
-            # loss_attention_fea = self.loss_mse(fea_att, target_fea_att)
-            # loss_attention_fea = self.loss_mse(fea_att, target_fea_att)
             loss_attention_prob = self.loss_fn(prob_att, target_prob_att)
-            # loss["loss_attention"] = (loss_attention_fea + loss_attention_prob) * self.loss_weight["loss_att"]
             loss["loss_attention"] = loss_attention_prob * self.loss_weight["loss_att"]
 
         if self.mi_att is not None:

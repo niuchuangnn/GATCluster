@@ -1,4 +1,5 @@
 from deepcluster.data.datasets.stl10 import STL10
+from deepcluster.data.datasets.imagenet import DatasetFolder
 import torchvision.transforms as transforms
 import torchvision.transforms.functional as tf
 from torch.utils.data import DataLoader
@@ -39,7 +40,7 @@ def build_dataset(data_cfg):
                         transform=transforms.Compose([to_tensor, normalize]),
                         transform_aug=T,
                         num_trans_aug=num_trans_aug,
-                        download=False)
+                        download=data_cfg.download)
     elif type == "stl10_gray":
         to_gray = tf.to_grayscale
         to_tensor = transforms.ToTensor()
@@ -63,7 +64,57 @@ def build_dataset(data_cfg):
                         transform=transforms.Compose([to_gray, to_tensor]),
                         transform_aug=T,
                         num_trans_aug=num_trans_aug,
-                        download=False)
+                        download=data_cfg.download)
+    elif type == "imagenet":
+        to_gray = tf.to_grayscale
+        transform_list_train = []
+        transform_list_test = []
+        if data_cfg.resize is not None:
+            rz = transforms.Resize([data_cfg.resize, data_cfg.resize])
+            transform_list_train.append(rz)
+            transform_list_test.append(rz)
+
+        if data_cfg.gray:
+            normalize = transforms.Normalize(mean=[0.449], std=[0.226])
+        else:
+            normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                             std=[0.229, 0.224, 0.225])
+
+        to_tensor = transforms.ToTensor()
+        if data_cfg.train:
+            flip = transforms.RandomHorizontalFlip(0.5)
+            ## default
+            affine = transforms.RandomAffine(degrees=10, translate=[0.1, 0.1], scale=[0.7, 1.3], shear=10)
+            color_jitter = transforms.ColorJitter(brightness=0.3, contrast=0.3, hue=0.2)
+
+            transform_list_train.append(flip)
+            transform_list_train.append(color_jitter)
+            transform_list_train.append(affine)
+            if data_cfg.gray:
+                transform_list_train.append(to_gray)
+            transform_list_train.append(to_tensor)
+            transform_list_train.append(normalize)
+            T = transforms.Compose(transform_list_train)
+        else:
+            T = None
+
+        if "num_trans_aug" in data_cfg:
+            num_trans_aug = data_cfg.num_trans_aug
+        else:
+            num_trans_aug = 1
+
+        if data_cfg.gray:
+            transform_list_test.append(to_gray)
+        transform_list_test.append(to_tensor)
+        transform_list_test.append(normalize)
+        dataset = DatasetFolder(
+            root=data_cfg.root_folder,
+            download=data_cfg.download,
+            transform=transforms.Compose(transform_list_test),
+            transform_aug=T,
+            num_trans_aug=num_trans_aug,
+            show=data_cfg.show,
+        )
     else:
         assert TypeError
 

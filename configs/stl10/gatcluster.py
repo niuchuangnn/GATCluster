@@ -11,7 +11,7 @@ train_batch_size = batch_size
 train_sub_batch_size = 32
 num_trans_aug = 1
 num_repeat = 8
-fea_dim = 32
+fea_dim = 10
 att_conv_dim = num_cluster
 att_size = 6
 
@@ -19,8 +19,9 @@ max_iters = 6000
 
 data_train = dict(
     type="stl10_gray",
-    root_folder="/media/niuchuang/Storage/DataSets/stl10",
+    root_folder="./datasets/stl10",
     split="train+test",
+    download=True,
     ims_per_batch=batch_size,
     shuffle=True,
     aspect_ratio_grouping=False,
@@ -31,8 +32,9 @@ data_train = dict(
 
 data_test = dict(
     type="stl10_gray",
-    root_folder="/media/niuchuang/Storage/DataSets/stl10",
+    root_folder="./datasets/stl10",
     split="train+test",
+    download=True,
     shuffle=False,
     ims_per_batch=50,
     aspect_ratio_grouping=False,
@@ -150,5 +152,5 @@ solver = dict(
 )
 
 results = dict(
-    output_dir="/media/niuchuang/Storage/ModelResults/AttentionCluster/stl10/{}".format(model_name),
+    output_dir="./results/stl10/{}".format(model_name),
 )
