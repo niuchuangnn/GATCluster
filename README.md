@@ -8,7 +8,7 @@ __Accepted at ECCV 2020.__
 ## Installation
 Assuming [Anaconda](https://www.anaconda.com/) with python 3.6, the required packages for this project can be installed as:
 ```shell script
-conda install pytorch torchvision cudatoolkit=10.1 -c pytorch # The latest Pytorch version (1.5.1) and recent versions >= 1.1.0 have been tested.
+conda install pytorch torchvision cudatoolkit=10.1 -c pytorch # The latest Pytorch version (1.5.1) has been tested.
 conda install -c conda-forge addict
 conda install matplotlib tqdm scikit-learn requests
 ```
