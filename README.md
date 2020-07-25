@@ -42,7 +42,33 @@ Then, run
 ```shell script
 python ./tools/visualize_att_map.py
 ```
+Then results will be save in `./results/stl10/gatcluster/att_maps/` as:
 
+<table align='c'>
+
+<tr>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/0.png"></td>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/1.png"></td>
+</tr>
+
+<tr>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/0.png"></td>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/1.png"></td>
+</tr>
+<tr>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/2.png"></td>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/3.png"></td>
+</tr>
+<tr>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/4.png"></td>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/5.png"></td>
+</tr>
+<tr>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/6.png"></td>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/7.png"></td>
+</tr>
+
+</table>
 
 
 ## Citation
