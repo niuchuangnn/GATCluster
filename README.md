@@ -52,10 +52,6 @@ Then results will be save in `./results/stl10/gatcluster/att_maps/` as:
 </tr>
 
 <tr>
-<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/0.png"></td>
-<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/1.png"></td>
-</tr>
-<tr>
 <td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/2.png"></td>
 <td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/3.png"></td>
 </tr>
@@ -66,6 +62,10 @@ Then results will be save in `./results/stl10/gatcluster/att_maps/` as:
 <tr>
 <td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/6.png"></td>
 <td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/7.png"></td>
+</tr>
+<tr>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/8.png"></td>
+<td><img  height="100" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/stl10/att_maps/9.png"></td>
 </tr>
 
 </table>
