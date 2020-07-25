@@ -33,7 +33,17 @@ The dataset will be downloaded automatically and saved to `./datasets/` when mis
 Our method is memory-efficient, a single GPU with 8G memory is enough for deep clustering.
 
 ## Visualization of attention map
-Coming soon.
+Before visualizing the attention maps, 
+a model should be trained and set the corresponding path in `./tools/visualize_att_map.py`.
+You can also use our trained model on STL10 at [here](https://drive.google.com/uc?export=download&id=1LXfoWhLpM7yiVJy_POkdOImHfkDjz1xI),
+and place it in `./results/stl10/gatcluster/`. This model is reproduced and its accuracy is slightly better than the best result reported in our paper.
+
+Then, run
+```shell script
+python ./tools/visualize_att_map.py
+```
+
+
 
 ## Citation
 

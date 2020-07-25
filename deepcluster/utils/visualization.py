@@ -73,7 +73,7 @@ def show_examples(imgs, scores, attention_maps, scores_att):
         # plt.show()
 
 
-def show_examples3(imgs, scores, attention_maps, save_folder, num_cluster=10):
+def show_examples3(imgs, scores, attention_maps, save_folder, num_cluster=10, save_img=False):
     num_img = imgs.shape[0]
 
     for i in range(num_img):
@@ -83,6 +83,12 @@ def show_examples3(imgs, scores, attention_maps, save_folder, num_cluster=10):
         ax3 = fig.add_subplot(1, 3, 3)
 
         img = imgs[i].transpose([1, 2, 0])
+
+        if save_img:
+            img_save = (img*255).astype(np.uint8)
+            img_save = Image.fromarray(img_save)
+            img_save.save("{}/img_{}.png".format(save_folder, i))
+
         ax1.imshow(img)
         ax1.axis("off")
 
@@ -106,9 +112,6 @@ def show_examples3(imgs, scores, attention_maps, save_folder, num_cluster=10):
         attMap = att
         attMapV = cmap(attMap)
         attMapV = np.delete(attMapV, 3, 2) * 255
-
-        # attMap = 1 * (1 - attMap ** 0.7).reshape(attMap.shape + (1,)) * img +\
-        #          (attMap ** 0.7).reshape(attMap.shape + (1,)) * attMapV
 
         attMap = 0.4*img*255 + 0.6*attMapV
         attMap = attMap.astype(np.uint8)
