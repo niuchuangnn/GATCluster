@@ -74,7 +74,10 @@ def show_examples(imgs, scores, attention_maps, scores_att):
 
 
 def show_examples3(imgs, scores, attention_maps, save_folder, num_cluster=10, save_img=False):
-    num_img = imgs.shape[0]
+    if isinstance(imgs, list):
+        num_img = len(imgs)
+    else:
+        num_img = imgs.shape[0]
 
     for i in range(num_img):
         fig = plt.figure(figsize=(16, 6))
@@ -99,14 +102,11 @@ def show_examples3(imgs, scores, attention_maps, save_folder, num_cluster=10, sa
 
         att = attention_maps[i, 0]
         att = Image.fromarray(np.uint8(att*255))
-        att = att.resize((imgs.shape[2], imgs.shape[3]), resample=PIL.Image.BILINEAR)
+        att = att.resize((img.shape[1], img.shape[0]), resample=PIL.Image.BILINEAR)
         att = np.asarray(att)
 
         att_mask = np.zeros_like(img)
         att_mask[:, :, 0] = att
-
-        alpha = 0.1
-        img_att = np.uint8((1-alpha)*img + alpha*att_mask)
 
         cmap = plt.get_cmap('jet')
         attMap = att

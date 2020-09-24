@@ -2,8 +2,8 @@
 By [Chuang Niu](https://scholar.google.com/citations?user=aoud5NgAAAAJ&hl), [Jun Zhang](https://junzhang.org/), [Ge Wang](https://www.linkedin.com/in/ge-wang-axis/), and [Jimin Liang](https://scholar.google.com/citations?user=SfkU4GEAAAAJ) 
 
 ## Introduction
-This project is the Pytorch implementation of [GATCluster: Self-Supervised Gaussian-Attention Network for Image Clustering](https://arxiv.org/pdf/2002.11863.pdf).
-__Accepted at ECCV 2020.__
+This project is the Pytorch implementation of [https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123700732.pdf)
+__at ECCV 2020.__
 
 ## Installation
 Assuming [Anaconda](https://www.anaconda.com/) with python 3.6, the required packages for this project can be installed as:
@@ -42,7 +42,7 @@ Then, run
 ```shell script
 python ./tools/visualize_att_map.py
 ```
-The results will be save in `./results/stl10/gatcluster/att_maps/` as:
+The results will be save in `./results/stl10/att_maps/` as:
 
 <table align='c'>
 
@@ -70,6 +70,15 @@ The results will be save in `./results/stl10/gatcluster/att_maps/` as:
 
 </table>
 
+For ImageNet10, you can also use our trained model at [here](https://drive.google.com/uc?export=download&id=1F-_YbuszPSAO_eWCzeJeCTOfgb0j5Vvl),
+and place it in `./results/imagenet10/gatcluster/`.
+
+Then, run
+```shell script
+python ./tools/visualize_att_map_imagenet10.py
+```
+
+The results will be save in `./results/imagenet10/att_maps/`.
 
 ## Citation
 
