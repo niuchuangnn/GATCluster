@@ -42,7 +42,7 @@ Then, run
 ```shell script
 python ./tools/visualize_att_map.py
 ```
-The results will be save in `./results/stl10/att_maps/` as:
+The results will be saved in `./results/stl10/att_maps/` as:
 
 <table align='c'>
 
@@ -70,15 +70,41 @@ The results will be save in `./results/stl10/att_maps/` as:
 
 </table>
 
-For ImageNet10, you can also use our trained model at [here](https://drive.google.com/uc?export=download&id=1F-_YbuszPSAO_eWCzeJeCTOfgb0j5Vvl),
-and place it in `./results/imagenet10/gatcluster/`.
+For ImageNet10, our trained model can be downloaded at [here](https://drive.google.com/uc?export=download&id=1F-_YbuszPSAO_eWCzeJeCTOfgb0j5Vvl),
+and placed into `./results/imagenet10/gatcluster/` for visualization.
 
 Then, run
 ```shell script
 python ./tools/visualize_att_map_imagenet10.py
 ```
 
-The results will be save in `./results/imagenet10/att_maps/`.
+The results will be saved in `./results/imagenet10/att_maps/` as:
+
+<table align='c'>
+
+<tr>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/0.png"></td>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/1.png"></td>
+</tr>
+
+<tr>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/2.png"></td>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/3.png"></td>
+</tr>
+<tr>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/4.png"></td>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/5.png"></td>
+</tr>
+<tr>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/6.png"></td>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/7.png"></td>
+</tr>
+<tr>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/8.png"></td>
+<td><img  height="120" src="https://github.com/niuchuangnn/GATCluster/blob/master/results/imagenet10/att_maps/9.png"></td>
+</tr>
+
+</table>
 
 ## Citation
 
