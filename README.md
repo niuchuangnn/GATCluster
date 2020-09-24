@@ -2,7 +2,7 @@
 By [Chuang Niu](https://scholar.google.com/citations?user=aoud5NgAAAAJ&hl), [Jun Zhang](https://junzhang.org/), [Ge Wang](https://www.linkedin.com/in/ge-wang-axis/), and [Jimin Liang](https://scholar.google.com/citations?user=SfkU4GEAAAAJ) 
 
 ## Introduction
-This project is the Pytorch implementation of [https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123700732.pdf)
+This project is the Pytorch implementation of the [paper](https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123700732.pdf)
 __at ECCV 2020.__
 
 ## Installation
